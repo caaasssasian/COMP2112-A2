@@ -1,19 +1,9 @@
-/* .link{
-    text-decoration: none;
-    color: #555;
-}*/
 .active {
-    background: #adadad;
+    background: #e5e5e5;
   } 
 
 .emailList {
     position: absolute;
     left: 150px;
     width: 350px;
-} 
-
-/* #main {
-    position: absolute !important;
-    right: 300px !important;
-    width: 700px !important;
-} */
+}

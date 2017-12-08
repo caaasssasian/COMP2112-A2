@@ -23,14 +23,17 @@
         <a href="#" class="nav-menu-button">Menu</a>
 
         <div class="nav-inner">
-            <button v-on:click="btn_addEmail" id="addEmail" class="primary-button pure-button">Compose</button>
+            <!-- runs btn_addEmail function when clicked -->
+            <button @click="btn_addEmail" id="addEmail" class="primary-button pure-button">Compose</button>
 
             <div class="pure-menu">
                 <ul class="pure-menu-list">
+                    <!-- runs btn_inbox function when clicked -->
                     <li @click="btn_inbox" id="inbox" class="pure-menu-item"><a href="#" class="pure-menu-link">Inbox</a></li>
                     <li class="pure-menu-item"><a href="#" class="pure-menu-link">Important</a></li>
                     <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sent</a></li>
                     <li class="pure-menu-item"><a href="#" class="pure-menu-link">Drafts</a></li>
+                    <!-- runs btn_trash function when clicked -->
                     <li @click="btn_trash" id="trash" class="pure-menu-item"><a href="#" class="pure-menu-link">Trash</a></li>
                     <li class="pure-menu-heading">Labels</li>
                     <li class="pure-menu-item"><a href="#" class="pure-menu-link"><span class="email-label-personal"></span>Personal</a></li>
@@ -41,9 +44,9 @@
         </div>
     </div>
     <div class="emailList">
+        <!-- runs selectedEmail function and displays selected email -->
         <div v-for="(email, index) in emails" v-on:click="selectedEmail(email, index)"
-        @click="activeEmail = email" :class="{'active': email === activeEmail}" class="pure-u-5">
-            <!-- EMAIL OF GAMES HERE FROM JS -->
+        @click="activeEmail = email" v-bind:class="{'active': email === activeEmail}" class="pure-u-5">
             <div class="email-item pure-g" data-id="${index}">
                 <div class="pure-u">
                     <img width="64" height="64" alt="game avatar" class="email-avatar" :src="email.avatar">

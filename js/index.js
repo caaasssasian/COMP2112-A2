@@ -255,17 +255,22 @@ var app = new Vue({
                 yield this.moreEmails[index++];
         },
 
+        // selecting and displaying full email to main
         selectedEmail: function(email, index) {
             console.log(email, index);
             this.index = index;
         },
 
+        // adds new email from moreEmails array
+        // unshift is used to have email display at the top
         btn_addEmail: function(event) {
             event.preventDefault();
-            let tempObj = this.gen.next() || {};
-            tempObj.done ? console.warn('no more emails') : this.emails.unshift(tempObj.value);
+            let newEmail = this.gen.next() || {};
+            newEmail.done ? console.warn('no more emails') : 
+            this.emails.unshift(newEmail.value);
         },
 
+        // deletes current email
         btn_delete: function(emails, index) {
             if (emails[index].deleted === true) {
                 emails[index].deleted = false;
@@ -273,17 +278,21 @@ var app = new Vue({
             }
             else {
                 this.$set(emails[index], 'deleted', true);
-                this.emails.splice(index, 1)
+                this.emails.splice(index, 1);
+                // this.emails.filter(emails[index].deleted);
                 console.info(`Deleted ${emails[index].subject}`);
             }
         },
 
         btn_inbox: function(event) {
             event.preventDefault();
+            console.log('inbox');
         },
 
         btn_trash: function(event) {
             event.preventDefault();
+            // let filtered = this.emails.filter(email.deleted);
+            console.log('trash');
         }
         // trash.addEventListener('click', function(e) {
         //     e.preventDefault();
