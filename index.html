@@ -65,6 +65,7 @@
         <div class="email-content">
             <div class="email-content-header pure-g">
                 <div class="pure-u-1-2">
+                    <!-- displays selected email -->
                     <h1 class="email-content-title">{{ emails[index].subject }}</h1>
                     <p class="email-content-subtitle">From <a>{{ emails[index].first_name }}</a> in <span>{{ emails[index].date }}</span></p>
                 </div>
@@ -83,11 +84,11 @@
     </div>
 </div>
 
-<!-- <script src="js/MOCK_DATA.js"></script> -->
+<script src="js/MOCK_DATA.js"></script>
 <script src="https://unpkg.com/vue"></script>
 <script src="js/index.js"></script>
 <script src="https://yui-s.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
-<!-- <script>
+<script>
     YUI().use('node-base', 'node-event-delegate', function (Y) {
 
         var menuButton = Y.one('.nav-menu-button'),
@@ -101,7 +102,7 @@
         // Your application code goes here...
 
     });
-</script> -->
+</script>
 
 
 
