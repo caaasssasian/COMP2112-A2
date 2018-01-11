@@ -1,4 +1,7 @@
-var app = new Vue({
+// AUDIO API -> btn_addEmail function (line 53)
+// SPEECH API -> btn_delete function (line 72)
+
+let app = new Vue({
     el: "#layout",
     mounted: function() {
         this.gen = this.addEmail();
@@ -26,9 +29,10 @@ var app = new Vue({
     },
 
     methods: {
+        // adds emails from moreEmails when btn_addEmail function is clicked
         addEmail: function*() {
             let index = 0;
-
+            // while there are more emails than what is given, add more emails 
             while (index < this.moreEmails.length)
                 yield this.moreEmails[index++];
         },
@@ -36,7 +40,7 @@ var app = new Vue({
         // selecting and displaying full email to main
         selectedEmail: function(email, index) {
             console.log(email, index);
-            this.index = index;
+            this.index = index;            
         },
 
         // adds new email from moreEmails array
@@ -46,19 +50,30 @@ var app = new Vue({
             let newEmail = this.gen.next() || {};
             newEmail.done ? console.warn('no more emails') : 
             this.emails.unshift(newEmail.value);
+
+            // AUDIO API
+            let sound = document.querySelector('audio');
+            sound.play();
         },
 
         // deletes current email
         btn_delete: function(emails, index) {
+            // if the email is not deleted, console log "Delete 'email name'"
             if (emails[index].deleted === true) {
                 emails[index].deleted = false;
                 console.info(`Delete ${emails[index].subject}`);
             }
+            // if delete button is clicked, console log "Delete 'email name'"
             else {
                 this.$set(emails[index], 'deleted', true);
                 // splice removes the selected email
                 this.emails.splice(index, 1);
                 console.info(`Deleted ${emails[index].subject}`);
+
+                // SPEECH API
+                const host = new SpeechSynthesisUtterance();
+                host.text = 'Deleted';
+                speechSynthesis.speak(host);
             }
         },
 
