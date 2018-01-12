@@ -88,3 +88,7 @@ let app = new Vue({
         }
     }
 })
+
+// VIDEO API
+let video = document.querySelector('video');
+video.play();
