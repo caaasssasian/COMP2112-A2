@@ -1,5 +1,7 @@
 // AUDIO API -> btn_addEmail function (line 53)
 // SPEECH API -> btn_delete function (line 72)
+// VIDEO API -> line 94
+// RANDOM USER API -> line 98
 
 let app = new Vue({
     el: "#layout",
@@ -92,3 +94,49 @@ let app = new Vue({
 // VIDEO API
 let video = document.querySelector('video');
 video.play();
+
+// FETCH & ASYNC
+const apiUrl = "https://randomuser.me/api/";
+let user;
+
+// create a function to display the user data
+function displayData() {
+    // input data to HTML
+    api.innerHTML = `
+        <p>To: ${user.results[0].name.title}. ${user.results[0].name.first} ${user.results[0].name.last}</p>
+    `;
+}
+
+// API RESPONSE USING FETCH
+function fetch1() {
+    // fetch the apiURL
+    fetch(apiUrl)
+    // then return as JSON
+    .then(function (res) {
+        return res.json();
+    })
+    // then display the data
+    .then(function (data) {
+        console.log(data);
+        user = data;
+        displayData();
+    })
+    // catch any errors
+    .catch(function (error) {
+        console.log(error);
+    });
+}
+
+// API RESPONSE USING ASYNC
+async function fetch2() {
+    // fetch data from apiURL
+    const response = await fetch(apiUrl);
+    // respond the data as json
+    const data = await response.json();
+    // display the data
+    console.log(data);
+    user = data;
+    displayData();
+}
+// call the functions (fetch1/2) to display data 
+fetch1();
